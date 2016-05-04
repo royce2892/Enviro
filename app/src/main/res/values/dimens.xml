@@ -1,0 +1,46 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="eight_dp">8dp</dimen>
+    <dimen name="icon_dp">24dp</dimen>
+    <dimen name="six">6dp</dimen>
+    <dimen name="sixteen">16dp</dimen>
+    <dimen name="ten">10dp</dimen>
+    <dimen name="font_sixteen">16sp</dimen>
+    <dimen name="fourty">40dp</dimen>
+    <dimen name="twentyfour">24dp</dimen>
+    <dimen name="eighteen">18dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="three">3dp</dimen>
+    <dimen name="twenty">20dp</dimen>
+
+
+    <dimen name="spacing_xsmall">2dp</dimen>
+    <dimen name="spacing_medium">8dp</dimen>
+    <dimen name="spacing_large">16dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
+
+    <dimen name="elevation_low">9dp</dimen>
+    <dimen name="elevation_high">12dp</dimen>
+    <dimen name="status_bar_height">25dp</dimen>
+
+    <dimen name="font_fourteen">14sp</dimen>
+    <dimen name="font_twelve">12sp</dimen>
+    <dimen name="font_eighteen">18sp</dimen>
+    <dimen name="seventyfive">75dp</dimen>
+    <dimen name="sixty">60dp</dimen>
+    <dimen name="four">4dp</dimen>
+    <dimen name="font_twenty">20sp</dimen>
+    <dimen name="font_thirty">30sp</dimen>
+
+
+    <dimen name="fb_margin_override_top">13dp</dimen>
+    <dimen name="fb_margin_override_bottom">13dp</dimen>
+    <!--The next value changes the margin between the FB icon and the left border:-->
+    <dimen name="fb_margin_override_lr">17dp</dimen>
+    <!--The next value changes the margin between the FB icon and the login text:-->
+    <dimen name="fb_margin_override_textpadding">10dp</dimen>
+</resources>

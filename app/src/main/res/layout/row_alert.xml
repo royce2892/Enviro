@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/row_alert_image"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/dummy_fish" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/row_alert_name"
+        android:text="Mathew Dominic"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif"
+        android:gravity="left|center_vertical"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/row_alert_image"
+        android:layout_height="32dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/row_alert_place"
+        android:text="Palakkad, India"
+        android:paddingLeft="16dp"
+        android:layout_below="@+id/row_alert_name"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:gravity="left|center_vertical"
+        android:layout_toRightOf="@+id/row_alert_image"
+        android:layout_height="16dp" />
+
+    
+</RelativeLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="72dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/row_lead_image"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:src="@drawable/dummy_fish" />
+
+    <TextView
+        android:id="@+id/row_lead_name"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/row_lead_image"
+        android:fontFamily="sans-serif"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="16dp"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/row_lead_score"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_alignParentRight="true"
+        android:fontFamily="sans-serif"
+        android:gravity="right|top"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/row_lead_place"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_below="@+id/row_lead_name"
+        android:layout_toRightOf="@+id/row_lead_image"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="16dp"
+        android:text="Palakkad, India"
+        android:textColor="@color/stone"
+        android:textSize="16sp" />
+
+
+</RelativeLayout>

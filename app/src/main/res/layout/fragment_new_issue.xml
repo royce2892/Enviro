@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee">
+
+
+    <ImageView
+        android:id="@+id/issue"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_below="@id/toolBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/ic_menu_camera" />
+
+  <!--  <ImageView
+        android:id="@+id/place_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/issue"
+        android:padding="16dp"
+        android:src="@drawable/ic_place_black_24dp" />-->
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/issue"
+        android:background="@android:color/transparent"
+        android:gravity="left|center_vertical"
+        android:padding="16dp"
+        android:hint="Enter a brief description"
+        android:id="@+id/place"
+        android:paddingLeft="8dp"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <!-- <ImageView
+         android:id="@+id/time_image"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/place_image"
+         android:padding="16dp"
+         android:src="@drawable/ic_access_time_black_24dp" />
+
+     <EditText
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBottom="@id/time_image"
+         android:layout_alignTop="@+id/time_image"
+         android:layout_toRightOf="@+id/time_image"
+         android:background="@android:color/transparent"
+         android:gravity="center"
+         android:paddingLeft="8dp"
+         android:text="36 minutes"
+         android:textColor="@color/black"
+         android:textSize="20sp" />-->
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:height="60dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:id="@+id/report"
+        android:text="REPORT"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+
+</RelativeLayout>

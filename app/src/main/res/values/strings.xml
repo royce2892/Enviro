@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Enviro</string>
+    <string name="fb_app_id">1630810627151473</string>
+
+    <string name="feed_1">Nithin Paul shared a feedback three hours ago : Rare fish , A prized catch , could you tell us
+                            the bait you used to get hold of this one . Thanks and keep up the good work . Keep
+                            sharing and keep caring
+    </string>
+
+    <string name="feed_2">Mathew Dominic shared a feedback nine hours ago : Try another popular retrieving method "walk the dog,"
+        commonly used for soft-frog or Zara spook-type baits.
+        Walking the dog is where you quickly twitch the rod tip up and down for the duration of the slow retrieve.</string>
+
+    <string name="feed_3">Vishnu Nandakumar shared a feedback nine hours ago : Bro , that\'s some cool fish you caught .
+        Could you tell me how you managed to catch this one ? Looks so fishy ! Thanks and keep it up .
+    </string>
+
+    <string name="feed_4">John K Joy shared a feedback nine hours ago :  Rare fish , A prized catch , could you tell us
+                            the bait you used to get hold of this one .         Could you tell me how you managed to catch this one ? Looks so fishy ! Thanks and keep it up .
+
+    </string>
+</resources>
