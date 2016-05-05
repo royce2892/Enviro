@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#eee"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/message_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="70dp"
+        android:divider="@null" />
+
+    <RelativeLayout
+        android:id="@+id/add_message_layout"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/border_add_comment">
+
+        <EditText
+            android:id="@+id/message_box"
+            android:layout_width="350dp"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_margin="8dp"
+            android:background="@color/white"
+            android:hint="Type a message"
+            android:textColor="@color/black"
+            android:textColorHint="@color/liz"
+            android:textCursorDrawable="@null"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/message_send"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="6dp"
+            android:src="@drawable/ic_send_black_24dp" />
+
+    </RelativeLayout>
+</RelativeLayout>

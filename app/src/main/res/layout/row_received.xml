@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/row_conversation_event"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:id="@+id/message_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtView_sender_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/liz"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txtView_message_timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:paddingLeft="8dp"
+            android:textColor="@color/liz"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <com.prappz.envi.widgets.ReceivedBubbleView
+        android:id="@+id/bubble_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/message_header"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/dummy_background"
+        android:gravity="start"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/txtView_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageLayout"
+            android:layout_gravity="start|center_vertical"
+            android:autoLink="all"
+            android:paddingBottom="2dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+    </com.prappz.envi.widgets.ReceivedBubbleView>
+
+</RelativeLayout>

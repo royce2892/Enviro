@@ -29,6 +29,7 @@ import com.prappz.envi.R;
 import com.prappz.envi.application.PreferenceManager;
 import com.prappz.envi.fragment.HomeFragment;
 import com.prappz.envi.fragment.LeaderboardFragment;
+import com.prappz.envi.fragment.NearbyFragment;
 import com.prappz.envi.fragment.NewIssueFragment;
 
 import java.io.IOException;
@@ -118,12 +119,16 @@ public class MainActivity extends AppCompatActivity implements ClickedView, Goog
                 LeaderboardFragment leaderboardFragment = LeaderboardFragment.newInstance();
                 fragmentTransaction.add(R.id.frame, leaderboardFragment);
                 break;
-
-
+            case R.id.nearby_layout:
+                NearbyFragment nearbyFragment = NearbyFragment.newInstance();
+                fragmentTransaction.add(R.id.frame,nearbyFragment);
+                break;
         }
 
+        fragmentTransaction.addToBackStack("none");
         fragmentTransaction.commit();
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
