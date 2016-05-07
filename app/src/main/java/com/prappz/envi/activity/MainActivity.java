@@ -30,6 +30,7 @@ import com.prappz.envi.application.PreferenceManager;
 import com.prappz.envi.fragment.HomeFragment;
 import com.prappz.envi.fragment.LeaderboardFragment;
 import com.prappz.envi.fragment.NearbyFragment;
+import com.prappz.envi.fragment.NewEventFragment;
 import com.prappz.envi.fragment.NewIssueFragment;
 
 import java.io.IOException;
@@ -121,7 +122,11 @@ public class MainActivity extends AppCompatActivity implements ClickedView, Goog
                 break;
             case R.id.nearby_layout:
                 NearbyFragment nearbyFragment = NearbyFragment.newInstance();
-                fragmentTransaction.add(R.id.frame,nearbyFragment);
+                fragmentTransaction.add(R.id.frame, nearbyFragment);
+                break;
+            case R.id.fab:
+                NewEventFragment newEventFragment = NewEventFragment.newInstance();
+                fragmentTransaction.replace(R.id.frame, newEventFragment);
                 break;
         }
 
