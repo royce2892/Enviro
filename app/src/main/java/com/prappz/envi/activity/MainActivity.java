@@ -10,50 +10,62 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.RelativeLayout;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.LatLng;
 import com.prappz.envi.ClickedView;
 import com.prappz.envi.R;
 import com.prappz.envi.application.PreferenceManager;
-import com.prappz.envi.fragment.HomeFragment;
-import com.prappz.envi.fragment.LeaderboardFragment;
-import com.prappz.envi.fragment.NewIssueFragment;
 
 import java.io.IOException;
 import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements ClickedView, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     FragmentManager fragmentManager;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
+    @Bind(R.id.btnCreate)
+    FloatingActionButton btnCreate;
+    @Bind(R.id.pager)
+    ViewPager viewPager;
+    @Bind(R.id.sliding_tabs)
+    TabLayout mSlidingTabLayout;;
+    private TabAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ButterKnife.bind(this);
 
+        mAdapter = new TabAdapter(getSupportFragmentManager());
+        viewPager.setOffscreenPageLimit(2);
+        viewPager.setAdapter(mAdapter);
+        mSlidingTabLayout.setupWithViewPager(viewPager);
         // toolbar = (Toolbar) findViewById(R.id.toolBar);
 
-        fragmentManager = getSupportFragmentManager();
+        /*fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         HomeFragment fragment = HomeFragment.newInstance();
         fragmentTransaction.add(R.id.frame, fragment);
-        fragmentTransaction.addToBackStack("none");
-        fragmentTransaction.commit();
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();*/
+
 
         requestPermission();
         if (mGoogleApiClient == null) {
@@ -108,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements ClickedView, Goog
     @Override
     public void clicked(int id) {
 
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        /*FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch (id) {
             case R.id.new_fish_layout:
                 NewIssueFragment newIssueFragment = NewIssueFragment.newInstance();
@@ -122,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements ClickedView, Goog
 
         }
 
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
     }
 
     @Override
@@ -245,5 +257,14 @@ public class MainActivity extends AppCompatActivity implements ClickedView, Goog
         PreferenceManager.getInstance(this).put("CITY", City);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        if (count == 1) {
+            finish();
+            //super.onBackPressed();
+            //additional code        } else {
+            getSupportFragmentManager().popBackStack();
+        }
+    }
 }

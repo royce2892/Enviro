@@ -26,7 +26,6 @@ import java.util.List;
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     ClickedView clickedView;
-    RelativeLayout newIssue, leaderboard, nearby;
     ListView issueListView;
     IssueListAdapter issueListAdapter;
 
@@ -48,16 +47,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        newIssue = (RelativeLayout) view.findViewById(R.id.new_fish_layout);
-        leaderboard = (RelativeLayout) view.findViewById(R.id.lead_layout);
-        nearby = (RelativeLayout) view.findViewById(R.id.nearby_layout);
         issueListView = (ListView) view.findViewById(R.id.issue_list);
 
         loadIssues();
-        newIssue.setOnClickListener(this);
-        leaderboard.setOnClickListener(this);
-        nearby.setOnClickListener(this);
     }
 
     private void loadIssues() {

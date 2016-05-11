@@ -3,18 +3,11 @@ package com.prappz.envi.activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
@@ -41,8 +34,8 @@ import java.util.List;
  */
 public class LoginActivity extends Activity {
 
-    ProgressDialog progressDialog;
     private static final String TAG = "Login";
+    ProgressDialog progressDialog;
     Button mFb;
     LinearLayout intro;
 
@@ -175,7 +168,7 @@ public class LoginActivity extends Activity {
 
         id = String.valueOf(jsonObject.getLong("id"));
 
-        ParsePush.subscribeInBackground("p"+id);
+        ParsePush.subscribeInBackground("p" + id);
         name = jsonObject.getString("name");
 
         if (jsonObject.getString("gender") != null)
@@ -214,8 +207,8 @@ public class LoginActivity extends Activity {
     private void skipToMain() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
-        this.onDestroy();
-    }
+        finish();
+      }
 
 
 }
