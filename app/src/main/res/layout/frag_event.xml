@@ -6,12 +6,21 @@
     android:background="#EEE">
 
     <ListView
-        android:id="@+id/lead_list"
+        android:id="@+id/event_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"
-        android:scrollbars="none"
         android:dividerHeight="8dp"
-        android:padding="16dp" />
+        android:padding="16dp"
+        android:scrollbars="none" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:id="@+id/fab"
+        android:src="@drawable/ic_action_new"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
