@@ -1,11 +1,9 @@
-package com.prappz.envi.fragment;
+package com.prappz.envi.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,36 +17,26 @@ import com.prappz.envi.application.PreferenceManager;
 /**
  * Created by royce on 07-05-2016.
  */
-public class NewEventFragment extends Fragment {
+public class NewEventActivity extends AppCompatActivity {
 
     EditText etTitle, etDesc, etDate, etTime, etPlace;
     TextView post;
 
-    public NewEventFragment() {
-    }
-
-    public static NewEventFragment newInstance() {
-        final NewEventFragment newEventFragment = new NewEventFragment();
-        return newEventFragment;
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.frag_new_event, container, false);
-    }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        etPlace = (EditText) view.findViewById(R.id.etPlace);
-        etTitle = (EditText) view.findViewById(R.id.etTitle);
-        etDesc = (EditText) view.findViewById(R.id.etDesc);
-        etDate = (EditText) view.findViewById(R.id.etDate);
-        etTime = (EditText) view.findViewById(R.id.etTime);
+        setContentView(R.layout.activity_new_event);
 
-        post = (TextView) view.findViewById(R.id.post_event);
+
+        etPlace = (EditText) findViewById(R.id.etPlace);
+        etTitle = (EditText) findViewById(R.id.etTitle);
+        etDesc = (EditText) findViewById(R.id.etDesc);
+        etDate = (EditText) findViewById(R.id.etDate);
+        etTime = (EditText) findViewById(R.id.etTime);
+
+        post = (TextView) findViewById(R.id.post_event);
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,19 +48,19 @@ public class NewEventFragment extends Fragment {
     private void postEvent() {
 
         if (etPlace.getText().toString().trim().replaceAll(" ", "").contentEquals("")) {
-            Toast.makeText(getActivity(), "Please enter a valid place", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter a valid place", Toast.LENGTH_SHORT).show();
             return;
         } else if (etTitle.getText().toString().trim().replaceAll(" ", "").contentEquals("")) {
-            Toast.makeText(getActivity(), "Please enter a valid title", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter a valid title", Toast.LENGTH_SHORT).show();
             return;
         } else if (etDesc.getText().toString().trim().replaceAll(" ", "").contentEquals("")) {
-            Toast.makeText(getActivity(), "Please enter a valid description", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter a valid description", Toast.LENGTH_SHORT).show();
             return;
         } else if (etDate.getText().toString().length() != 5) {
-            Toast.makeText(getActivity(), "Please enter a valid date in MM/DD format", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter a valid date in MM/DD format", Toast.LENGTH_SHORT).show();
             return;
         } else if (etTime.getText().toString().length() != 5) {
-            Toast.makeText(getActivity(), "Please enter a valid time in HH:MM format", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter a valid time in HH:MM format", Toast.LENGTH_SHORT).show();
             return;
         } else {
 
@@ -84,25 +72,25 @@ public class NewEventFragment extends Fragment {
                 int mon = Integer.parseInt(month);
                 int da = Integer.parseInt(day);
                 if (c != '/' && c != '-' && c != '.') {
-                    Toast.makeText(getActivity(), "Please enter a valid date in MM/DD format", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Please enter a valid date in MM/DD format", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (mon < 1 || mon > 12) {
-                    Toast.makeText(getActivity(), "Please enter a month between 1 - 12 ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Please enter a month between 1 - 12 ", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (da < 1 || da > 31) {
-                    Toast.makeText(getActivity(), "Please enter a day between 1 - 31 ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Please enter a day between 1 - 31 ", Toast.LENGTH_SHORT).show();
                     return;
                 }
             } catch (NumberFormatException ex) {
-                Toast.makeText(getActivity(), "Please enter a valid date in MM/DD format ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please enter a valid date in MM/DD format ", Toast.LENGTH_SHORT).show();
                 return;
             }
 
 
             post.setClickable(false);
-            Toast.makeText(getActivity(), "Creating event ...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Creating event ...", Toast.LENGTH_SHORT).show();
 
             ParseObject event = ParseObject.create("Event");
             event.put("eventName", etTitle.getText().toString());
@@ -111,16 +99,16 @@ public class NewEventFragment extends Fragment {
             event.put("day", etDate.getText().toString().substring(3));
             event.put("month", etDate.getText().toString().substring(0, 2));
             event.put("desc", etDesc.getText().toString());
-            event.put("userName", PreferenceManager.getInstance(getActivity()).getString("name"));
-            event.put("zip", PreferenceManager.getInstance(getActivity()).getString("ZIP"));
+            event.put("userName", PreferenceManager.getInstance(this).getString("name"));
+            event.put("zip", PreferenceManager.getInstance(this).getString("ZIP"));
             event.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {
-                        Toast.makeText(getActivity(), "Event saved...", Toast.LENGTH_SHORT).show();
-                        getActivity().onBackPressed();
+                        Toast.makeText(NewEventActivity.this, "Event saved...", Toast.LENGTH_SHORT).show();
+                        NewEventActivity.this.onBackPressed();
                     } else {
-                        Toast.makeText(getActivity(), "Event save failed due to reason " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewEventActivity.this, "Event save failed due to reason " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         post.setClickable(true);
                     }
                 }

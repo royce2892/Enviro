@@ -5,12 +5,31 @@
     android:background="#eee"
     android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white">
+
+
+        <TextView
+            android:id="@+id/ivLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:scaleType="center"
+            android:text="New Event"
+            android:textColor="@color/stone"
+            android:textSize="@dimen/twenty" />
+    </android.support.v7.widget.Toolbar>
+
     <EditText
         android:id="@+id/etPlace"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_marginLeft="16dp"
+        android:layout_below="@+id/toolbar"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
         android:hint="Enter place"
@@ -73,7 +92,7 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:text="POST"
-        android:textColor="@color/white"
+        android:textColor="@color/indigo"
         android:textSize="24sp"
         android:textStyle="bold" />
 

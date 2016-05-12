@@ -1,40 +1,19 @@
-package com.prappz.envi.fragment;
+package com.prappz.envi.activity;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.LocationSource;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -43,14 +22,11 @@ import com.prappz.envi.R;
 import com.prappz.envi.application.PreferenceManager;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by royce on 03-05-2016.
  */
-public class NewIssueFragment extends Fragment {
+public class NewIssueActivity extends AppCompatActivity {
 
     ImageView camera;
     TextView report;
@@ -60,27 +36,16 @@ public class NewIssueFragment extends Fragment {
     Bitmap bitmap;
 
 
-    public NewIssueFragment() {
-    }
-
-    public static NewIssueFragment newInstance() {
-        final NewIssueFragment newIssueFragment = new NewIssueFragment();
-        return newIssueFragment;
-    }
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_new_issue, container, false);
-    }
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        setContentView(R.layout.activity_new_issue);
 
-        camera = (ImageView) view.findViewById(R.id.issue);
-        desc = (EditText) view.findViewById(R.id.place);
-        report = (TextView) view.findViewById(R.id.report);
+
+        camera = (ImageView) findViewById(R.id.issue);
+        desc = (EditText) findViewById(R.id.place);
+        report = (TextView) findViewById(R.id.report);
 
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +71,7 @@ public class NewIssueFragment extends Fragment {
     private void takePhoto() {
 
         Intent mRequestFileIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (mRequestFileIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+        if (mRequestFileIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(mRequestFileIntent, 34);
         }
     }
@@ -128,7 +93,7 @@ public class NewIssueFragment extends Fragment {
 
     private void addImageToParse() {
 
-        Toast.makeText(getActivity(),"Reporting Issue , Please wait",Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Reporting Issue , Please wait", Toast.LENGTH_LONG).show();
         ParseObject issue = ParseObject.create("Issue");
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
@@ -147,11 +112,11 @@ public class NewIssueFragment extends Fragment {
             }
         });
 
-        issue.put("name", PreferenceManager.getInstance(getActivity()).getString("name"));
-        issue.put("lat", PreferenceManager.getInstance(getActivity()).getString("LAT"));
-        issue.put("long", PreferenceManager.getInstance(getActivity()).getString("LON"));
-        issue.put("city", PreferenceManager.getInstance(getActivity()).getString("CITY"));
-        issue.put("zip", PreferenceManager.getInstance(getActivity()).getString("ZIP"));
+        issue.put("name", PreferenceManager.getInstance(this).getString("name"));
+        issue.put("lat", PreferenceManager.getInstance(this).getString("LAT"));
+        issue.put("long", PreferenceManager.getInstance(this).getString("LON"));
+        issue.put("city", PreferenceManager.getInstance(this).getString("CITY"));
+        issue.put("zip", PreferenceManager.getInstance(this).getString("ZIP"));
         issue.put("image", parseFile);
         issue.put("desc", desc.getText().toString());
         issue.saveInBackground(new SaveCallback() {
@@ -167,8 +132,8 @@ public class NewIssueFragment extends Fragment {
     }
 
     private void goBack() {
-        Toast.makeText(getActivity(),"Issue reported",Toast.LENGTH_LONG).show();
-        getActivity().onBackPressed();
+        Toast.makeText(this, "Issue reported", Toast.LENGTH_LONG).show();
+        onBackPressed();
     }
 
 }

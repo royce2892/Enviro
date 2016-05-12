@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white">
+
+
+        <TextView
+            android:id="@+id/ivLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:scaleType="center"
+            android:text="New Issue"
+            android:textColor="@color/stone"
+            android:textSize="@dimen/twenty" />
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/issue"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/ic_menu_camera" />
+
+    <!--  <ImageView
+          android:id="@+id/place_image"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/issue"
+          android:padding="16dp"
+          android:src="@drawable/ic_place_black_24dp" />-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/issue"
+        android:background="@android:color/transparent"
+        android:gravity="left|center_vertical"
+        android:padding="16dp"
+        android:text="Reported by Nandu Mahesh"
+        android:id="@+id/issue_reporter_name"
+        android:paddingLeft="8dp"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/issue_reporter_name"
+        android:background="@android:color/transparent"
+        android:gravity="left|center_vertical"
+        android:padding="16dp"
+        android:text="Reported by Nandu Mahesh"
+        android:id="@+id/issue_desc"
+        android:paddingLeft="8dp"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/share"
+        android:height="60dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:id="@+id/close"
+        android:text="MARK FIXED"
+        android:textColor="@color/indigo"
+        android:textSize="24sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:height="60dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:id="@+id/share"
+        android:text="SHARE"
+        android:textColor="@color/indigo"
+        android:textSize="24sp" />
+
+
+</RelativeLayout>

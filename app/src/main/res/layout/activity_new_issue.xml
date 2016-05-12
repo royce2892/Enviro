@@ -5,12 +5,30 @@
     android:layout_height="match_parent"
     android:background="#eee">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white">
+
+
+        <TextView
+            android:id="@+id/ivLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:scaleType="center"
+            android:text="New Issue"
+            android:textColor="@color/stone"
+            android:textSize="@dimen/twenty" />
+    </android.support.v7.widget.Toolbar>
 
     <ImageView
         android:id="@+id/issue"
         android:layout_width="240dp"
         android:layout_height="240dp"
-        android:layout_below="@id/toolBar"
+        android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
         android:scaleType="fitXY"
@@ -67,7 +85,7 @@
         android:gravity="center"
         android:id="@+id/report"
         android:text="REPORT"
-        android:textColor="@color/white"
+        android:textColor="@color/indigo"
         android:textSize="24sp" />
 
 

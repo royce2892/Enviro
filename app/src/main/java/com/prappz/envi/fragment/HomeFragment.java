@@ -1,21 +1,23 @@
 package com.prappz.envi.fragment;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.prappz.envi.ClickedView;
 import com.prappz.envi.R;
+import com.prappz.envi.activity.IssueActivity;
+import com.prappz.envi.activity.NewIssueActivity;
 import com.prappz.envi.adapter.IssueListAdapter;
 
 import java.util.List;
@@ -23,12 +25,11 @@ import java.util.List;
 /**
  * Created by royce on 03-05-2016.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment {
 
-    ClickedView clickedView;
     ListView issueListView;
     IssueListAdapter issueListAdapter;
-
+    FloatingActionButton floatingActionButton;
 
     public HomeFragment() {
     }
@@ -49,6 +50,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         issueListView = (ListView) view.findViewById(R.id.issue_list);
 
+        floatingActionButton = (FloatingActionButton) view.findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(new Intent(getActivity(), NewIssueActivity.class));
+            }
+        });
+
         loadIssues();
     }
 
@@ -65,28 +74,31 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private void setList(List<ParseObject> objects) {
+    private void setList(final List<ParseObject> objects) {
 
         issueListAdapter = new IssueListAdapter(getActivity(), objects);
         issueListView.setAdapter(issueListAdapter);
+
+        issueListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                gotoIssue(objects.get(position));
+            }
+        });
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    private void gotoIssue(ParseObject parseObject) {
 
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
-        try {
-            clickedView = (ClickedView) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
-        }
+        Intent issue = new Intent(getActivity(), IssueActivity.class);
+        issue.putExtra("name", parseObject.getString("name"));
+        issue.putExtra("city", parseObject.getString("city"));
+        issue.putExtra("url", parseObject.getParseFile("image").getUrl());
+        issue.putExtra("desc", parseObject.getString("desc"));
+        issue.putExtra("zip", parseObject.getString("zip"));
+        issue.putExtra("lat", parseObject.getString("lat"));
+        issue.putExtra("long", parseObject.getString("long"));
+        issue.putExtra("id", parseObject.getObjectId());
+        getActivity().startActivity(issue);
     }
 
-    @Override
-    public void onClick(View v) {
-        clickedView.clicked(v.getId());
-    }
 }

@@ -33,7 +33,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements ClickedView, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     FragmentManager fragmentManager;
     GoogleApiClient mGoogleApiClient;
@@ -113,26 +113,6 @@ public class MainActivity extends AppCompatActivity implements ClickedView, Goog
     protected void onStop() {
         super.onStop();
         mGoogleApiClient.disconnect();
-    }
-
-    @Override
-    public void clicked(int id) {
-
-        /*FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        switch (id) {
-            case R.id.new_fish_layout:
-                NewIssueFragment newIssueFragment = NewIssueFragment.newInstance();
-                fragmentTransaction.add(R.id.frame, newIssueFragment);
-                break;
-            case R.id.lead_layout:
-                LeaderboardFragment leaderboardFragment = LeaderboardFragment.newInstance();
-                fragmentTransaction.add(R.id.frame, leaderboardFragment);
-                break;
-
-
-        }
-
-        fragmentTransaction.commit();*/
     }
 
     @Override

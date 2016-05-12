@@ -1,6 +1,6 @@
 package com.prappz.envi.fragment;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -14,13 +14,9 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
-import com.prappz.envi.ClickedView;
 import com.prappz.envi.R;
+import com.prappz.envi.activity.NewEventActivity;
 import com.prappz.envi.adapter.EventListAdapter;
-import com.prappz.envi.adapter.MemberListAdapter;
-import com.prappz.envi.adapter.MessageListAdapter;
-import com.prappz.envi.application.PreferenceManager;
 
 import java.util.List;
 
@@ -30,7 +26,6 @@ import java.util.List;
 public class EventFragment extends Fragment {
 
     FloatingActionButton floatingActionButton;
-    ClickedView clickedView;
     ListView listView;
     EventListAdapter mEventListAdapter;
 
@@ -61,7 +56,7 @@ public class EventFragment extends Fragment {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickedView.clicked(v.getId());
+                getActivity().startActivity(new Intent(getActivity(), NewEventActivity.class));
             }
         });
 
@@ -79,24 +74,11 @@ public class EventFragment extends Fragment {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
-                    mEventListAdapter = new EventListAdapter(getActivity(),objects);
+                    mEventListAdapter = new EventListAdapter(getActivity(), objects);
                     listView.setAdapter(mEventListAdapter);
                 }
             }
         });
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
-        try {
-            clickedView = (ClickedView) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
-        }
-    }
 }
