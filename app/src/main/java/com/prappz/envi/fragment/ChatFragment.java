@@ -35,6 +35,11 @@ public class ChatFragment extends Fragment {
     EditText messageBox;
     ImageView messageSend;
 
+    public static ChatFragment newInstance() {
+        final ChatFragment chatFragment = new ChatFragment();
+        return chatFragment;
+    }
+
     public ChatFragment() {
     }
 

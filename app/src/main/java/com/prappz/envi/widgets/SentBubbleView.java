@@ -50,7 +50,7 @@ public class SentBubbleView extends LinearLayout {
 
     private void init() {
         mPaint = new Paint();
-        mPaint.setColor(getResources().getColor(R.color.colorPrimary));
+        mPaint.setColor(getResources().getColor(R.color.ripple));
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setAntiAlias(true);
 //        mPointedBackgroundPaint.setDither(true);

@@ -37,6 +37,11 @@ public class EventFragment extends Fragment {
     public EventFragment() {
     }
 
+    public static EventFragment newInstance() {
+        final EventFragment eventFragment = new EventFragment();
+        return eventFragment;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

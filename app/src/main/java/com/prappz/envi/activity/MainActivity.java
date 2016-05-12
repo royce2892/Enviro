@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements ClickedView, Goog
     FragmentManager fragmentManager;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
-    @Bind(R.id.btnCreate)
-    FloatingActionButton btnCreate;
     @Bind(R.id.pager)
     ViewPager viewPager;
     @Bind(R.id.sliding_tabs)
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements ClickedView, Goog
         ButterKnife.bind(this);
 
         mAdapter = new TabAdapter(getSupportFragmentManager());
-        viewPager.setOffscreenPageLimit(2);
+//        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(mAdapter);
         mSlidingTabLayout.setupWithViewPager(viewPager);
         // toolbar = (Toolbar) findViewById(R.id.toolBar);

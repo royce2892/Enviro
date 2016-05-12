@@ -49,7 +49,7 @@ public class ReceivedBubbleView extends LinearLayout {
 
     private void init(){
         mPointedBackgroundPaint = new Paint();
-        mPointedBackgroundPaint.setColor(getResources().getColor(R.color.colorPrimary));
+        mPointedBackgroundPaint.setColor(getResources().getColor(R.color.ripple));
         mPointedBackgroundPaint.setStyle(Paint.Style.FILL);
         mPointedBackgroundPaint.setAntiAlias(true);
 //        mPointedBackgroundPaint.setDither(true);

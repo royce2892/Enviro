@@ -8,8 +8,8 @@
     <color name="offwhite">#99FFFFFF</color>
 
     <color name="transparent">#00FFFFFF</color>
-    <color name="ripple">#FFF74048</color>
-    <color name="indigo">#536DFE</color>
+    <color name="ripple">#536DFE</color>
+    <color name="indigo">#FFF74048</color>
     <color name="indigo_dark">#425CED</color>
     <color name="stone">#FF555555</color>
 

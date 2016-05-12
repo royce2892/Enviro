@@ -7,8 +7,11 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
+import com.prappz.envi.fragment.ChatFragment;
+import com.prappz.envi.fragment.EventFragment;
 import com.prappz.envi.fragment.HomeFragment;
 import com.prappz.envi.fragment.LeaderboardFragment;
+import com.prappz.envi.fragment.NearbyFragment;
 
 /**
  * Created by nithin on 11/5/16.
@@ -32,9 +35,12 @@ public class TabAdapter extends FragmentPagerAdapter {
                 item = HomeFragment.newInstance();
                 break;
             case 1:
-                item = LeaderboardFragment.newInstance();
+                item = EventFragment.newInstance();
                 break;
             case 2:
+                item = ChatFragment.newInstance();
+                break;
+            case 3:
                 item = LeaderboardFragment.newInstance();
                 break;
             default:
@@ -47,7 +53,7 @@ public class TabAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return 3;
+        return 4;
     }
 
     @Override
@@ -59,11 +65,15 @@ public class TabAdapter extends FragmentPagerAdapter {
                 title = "Recent";
                 break;
             case 1:
-                title = "Near by";
+                title = "Events";
                 break;
             case 2:
-                title = "LeaderBoard";
+                title = "Chat";
                 break;
+            case 3:
+                title = "Top";
+                break;
+
             default:
                 title = "Ripple";
                 break;
