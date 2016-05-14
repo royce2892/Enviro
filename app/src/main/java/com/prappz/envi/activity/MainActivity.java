@@ -17,12 +17,18 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.prappz.envi.ClickedView;
 import com.prappz.envi.R;
 import com.prappz.envi.application.PreferenceManager;
@@ -41,8 +47,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @Bind(R.id.pager)
     ViewPager viewPager;
     @Bind(R.id.sliding_tabs)
-    TabLayout mSlidingTabLayout;;
+    TabLayout mSlidingTabLayout;
     private TabAdapter mAdapter;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         mAdapter = new TabAdapter(getSupportFragmentManager());
 //        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(mAdapter);
@@ -223,16 +232,24 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         State = addresses.get(0).getAdminArea();
         Country = addresses.get(0).getCountryName();
         Zip = addresses.get(0).getPostalCode();
-
+/*
         Log.i("ADDRESS", Address1 + " ");
         Log.i("ADDRESS", Address2 + " ");
         Log.i("ADDRESS", Zip + " ");
         Log.i("ADDRESS", City + " ");
         Log.i("ADDRESS", State + " ");
-        Log.i("ADDRESS", Country + " ");
+        Log.i("ADDRESS", Country + " ");*/
 
         PreferenceManager.getInstance(this).put("ZIP", Zip);
         PreferenceManager.getInstance(this).put("CITY", City);
+        ParseUser.getCurrentUser().put("city", City);
+        ParseUser.getCurrentUser().put("zip", Zip);
+        ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+
+            }
+        });
     }
 
     @Override
@@ -240,9 +257,23 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         int count = getSupportFragmentManager().getBackStackEntryCount();
         if (count == 1) {
             finish();
-            //super.onBackPressed();
-            //additional code        } else {
             getSupportFragmentManager().popBackStack();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_issue, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.request) {
+            startActivity(new Intent(this, ClosedActivity.class));
+            overridePendingTransition(R.anim.activity_push_up_in, R.anim.activity_push_up_out);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

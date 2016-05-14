@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,17 +33,18 @@ public class NewIssueActivity extends AppCompatActivity {
     ImageView camera;
     TextView report;
     EditText desc;
-    // TODO handle pic not take case and empty desc
     boolean photoTaken = false;
     Bitmap bitmap;
-
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_new_issue);
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         camera = (ImageView) findViewById(R.id.issue);
         desc = (EditText) findViewById(R.id.place);
@@ -57,16 +60,14 @@ public class NewIssueActivity extends AppCompatActivity {
         report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reportPhoto();
+                if (photoTaken)
+                    reportIssue();
+                else
+                    Toast.makeText(NewIssueActivity.this, "Please add an image", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-
-    private void reportPhoto() {
-
-        addImageToParse();
-    }
 
     private void takePhoto() {
 
@@ -84,6 +85,7 @@ public class NewIssueActivity extends AppCompatActivity {
             if (requestCode == 34) {
                 Bundle extras = data.getExtras();
                 bitmap = (Bitmap) extras.get("data");
+                photoTaken = true;
                 camera.setImageBitmap(bitmap);
                 //    mGridAdapter.addItem(bitmapList.get(requestCode - 20));
 
@@ -91,9 +93,13 @@ public class NewIssueActivity extends AppCompatActivity {
         }
     }
 
-    private void addImageToParse() {
+    private void reportIssue() {
 
-        Toast.makeText(this, "Reporting Issue , Please wait", Toast.LENGTH_LONG).show();
+        if (desc.getText().toString().trim().contentEquals("")) {
+            Toast.makeText(this, "Please add a issue description", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Toast.makeText(this, "Reporting Issue , Please wait", Toast.LENGTH_SHORT).show();
         ParseObject issue = ParseObject.create("Issue");
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
@@ -134,6 +140,20 @@ public class NewIssueActivity extends AppCompatActivity {
     private void goBack() {
         Toast.makeText(this, "Issue reported", Toast.LENGTH_LONG).show();
         onBackPressed();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(R.anim.activity_push_down_in, R.anim.activity_push_down_out);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+        return super.onOptionsItemSelected(item);
     }
 
 }

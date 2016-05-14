@@ -1,12 +1,29 @@
 package com.prappz.envi.activity;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 import com.prappz.envi.R;
+import com.prappz.envi.application.PreferenceManager;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -14,11 +31,11 @@ import com.squareup.picasso.Picasso;
  */
 public class IssueActivity extends AppCompatActivity {
 
-    TextView name, desc, share, close;
+    TextView name, desc, map, close, ivLogo;
     ImageView issue;
-    TextView toolbar;
+    Toolbar toolbar;
 
-    String s_name, s_desc, s_city, s_url;
+    String s_name, s_desc, s_city, s_url, lat, lon, id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,15 +43,19 @@ public class IssueActivity extends AppCompatActivity {
 
         setContentView(R.layout.act_issue);
 
-        toolbar = (TextView) findViewById(R.id.ivLogo);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ivLogo = (TextView) findViewById(R.id.ivLogo);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         issue = (ImageView) findViewById(R.id.issue);
         name = (TextView) findViewById(R.id.issue_reporter_name);
         desc = (TextView) findViewById(R.id.issue_desc);
-        share = (TextView) findViewById(R.id.share);
+        map = (TextView) findViewById(R.id.map);
         close = (TextView) findViewById(R.id.close);
 
-        toolbar.setText("Issue #"+getIntent().getStringExtra("id"));
+        ivLogo.setText("Issue #" + getIntent().getStringExtra("id"));
+
 
       /*  issue.putExtra("name", parseObject.getString("name"));
         issue.putExtra("city", parseObject.getString("city"));
@@ -48,10 +69,126 @@ public class IssueActivity extends AppCompatActivity {
         s_desc = getIntent().getStringExtra("desc");
         s_url = getIntent().getStringExtra("url");
         s_city = getIntent().getStringExtra("city");
+        lat = getIntent().getStringExtra("lat");
+        lon = getIntent().getStringExtra("long");
+        id = getIntent().getStringExtra("id");
+
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoMap();
+            }
+        });
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeIssue();
+            }
+
+
+        });
 
         name.setText("Reported by " + s_name + " from " + s_city);
         desc.setText(s_desc);
         Picasso.with(this).load(s_url).into(issue);
+
+    }
+
+    private void closeIssue() {
+
+        if (s_name.contentEquals(PreferenceManager.getInstance(this).getString("name")))
+            askConfiDialog();
+        else {
+            ParseObject close = ParseObject.create("Close");
+            close.put("eventId", id);
+            close.put("userName", s_name);
+            close.put("url", s_url);
+            close.put("isActive", true);
+            close.put("fromName", PreferenceManager.getInstance(this).getString("name"));
+            close.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e == null) {
+                        Toast.makeText(IssueActivity.this, "Request sent to " + s_name + " to verify and close the issue", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
+    private void askConfiDialog() {
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Issue");
+        query.getInBackground(id, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e == null && object != null) {
+                    object.put("isClosed", true);
+                    object.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e == null) {
+                                Toast.makeText(IssueActivity.this, "Issue closed, you can re-open from closed issues", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    private void gotoMap() {
+        Uri gmmIntentUri = Uri.parse("geo:" + lat + "," + lon);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(mapIntent);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(R.anim.activity_push_down_in, R.anim.activity_push_down_out);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_share, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+        else if (item.getItemId() == R.id.share) {
+            shareIssue();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void shareIssue() {
+        //  Toast.makeText(this, "SHARE", Toast.LENGTH_SHORT).show();
+        // Get access to the URI for the bitmap
+       /* Drawable mDrawable = issue.getDrawable();
+        Bitmap mBitmap = ((BitmapDrawable) mDrawable).getBitmap();
+
+        String path = MediaStore.Images.Media.insertImage(getContentResolver(),
+                mBitmap, "Image Description", null);
+
+        Uri uri = Uri.parse(path);
+        if (uri != null) {*/
+        // Construct a ShareIntent with link to image
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "An issue was reported by " + s_name + " from " + s_city + " via Enviro App .Please find the image" +
+                " at " + s_url);
+        shareIntent.setType("text/plain");
+        startActivity(Intent.createChooser(shareIntent, "Share Issue"));
 
     }
 }

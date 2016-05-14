@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white">
+
+
+        <TextView
+            android:id="@+id/ivLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:scaleType="center"
+            android:textColor="@color/stone"
+            android:textSize="@dimen/twenty" />
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/event_day"
+        android:layout_width="72dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/toolbar"
+        android:gravity="left|bottom"
+        android:paddingLeft="16dp"
+        android:text="24"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/event_month"
+        android:layout_width="72dp"
+        android:layout_height="36dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/event_day"
+        android:gravity="left|top"
+        android:paddingLeft="16dp"
+        android:text="may"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/event_place"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_toRightOf="@+id/event_day"
+        android:gravity="center_horizontal|bottom"
+        android:text="Save Water Talk"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/event_time"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_below="@+id/event_day"
+        android:layout_toRightOf="@+id/event_month"
+        android:gravity="center_horizontal|top"
+        android:text="Silver spring library"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/event_host"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/event_time"
+        android:gravity="center_horizontal|top"
+        android:paddingLeft="16dp"
+        android:text="Hosted by Royce Raju"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/event_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/event_host"
+        android:layout_marginTop="8dp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="Event starts at 08:00"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/event_att_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/event_desc"
+        android:layout_marginTop="8dp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="Attendees"
+        android:textSize="18sp" />
+
+    <ListView
+        android:id="@+id/att_list"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rsvp"
+        android:layout_below="@+id/event_att_text"
+        android:divider="@null"
+        android:dividerHeight="8dp"
+        android:scrollbars="none" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/att_list"
+        android:id="@+id/empty"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:text="Be the first to attend :)"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/rsvp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:height="60dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="ATTEND"
+        android:textColor="@color/indigo"
+        android:textSize="24sp" />
+
+</RelativeLayout>

@@ -180,12 +180,12 @@ public class LoginActivity extends Activity {
         ParseUser user = ParseUser.getCurrentUser();
         user.put("id", id);
         user.put("name", name);
+        user.put("score", 300);
 
         if (email != null)
             user.put("email", email);
         if (gender != null)
             user.put("gender", gender);
-        Log.i(TAG, jsonObject.getJSONObject("picture").getJSONObject("data").getString("url").replaceAll("\\\\", ""));
         user.put("url", jsonObject.getJSONObject("picture").getJSONObject("data").getString("url").replaceAll("\\\\", ""));
 
         PreferenceManager.getInstance(this).put("name", name);

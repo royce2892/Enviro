@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="400dp"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/issue_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentLeft="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/dummy_fish" />
+
+    <TextView
+        android:id="@+id/issue_name"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_toRightOf="@+id/issue_image"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="16dp"
+        android:text="Royce Raju requested to close this issue"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:id="@+id/issue_close"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_toRightOf="@+id/issue_image"
+        android:layout_below="@id/issue_name"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="CLOSE"
+        android:textColor="@color/indigo"
+        android:textSize="20sp" />
+
+</RelativeLayout>
