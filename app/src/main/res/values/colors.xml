@@ -45,7 +45,7 @@
     <color name="border_light">#FFE8E8E8</color>
 
     <!-- language -->
-    <color name="green_overlay">#770AAD83</color>
+    <color name="green_overlay">#AA0AAD83</color>
     <color name="button_green">#FF28CB75</color>
     <color name="black">#555555</color>
     <color name="liz">#777777</color>

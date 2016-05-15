@@ -1,47 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="72dp">
+    android:background="@color/white"
+    android:layout_margin="@dimen/sixteen"
+
+    android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/row_lead_image"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/eight_dp"
         android:src="@drawable/dummy_fish" />
 
     <TextView
         android:id="@+id/row_lead_name"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/row_lead_image"
         android:fontFamily="sans-serif"
         android:gravity="left|center_vertical"
-        android:paddingLeft="16dp"
-        android:textColor="@color/black"
+        android:paddingLeft="@dimen/eight_dp"
+        android:paddingTop="@dimen/eight_dp"
+        android:textColor="@color/stone"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/row_lead_score"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
+        android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:fontFamily="sans-serif"
-        android:gravity="right|top"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:fontFamily="sans-serif-light"
+        android:layout_marginRight="@dimen/eight_dp"
+        android:gravity="center"
+        android:paddingBottom="@dimen/eight_dp"
+        android:paddingLeft="@dimen/six"
+        android:paddingRight="@dimen/six"
+        android:layout_centerVertical="true"
+        android:paddingTop="@dimen/eight_dp"
+        android:background="@color/blue"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/row_lead_place"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/row_lead_name"
         android:layout_toRightOf="@+id/row_lead_image"
         android:gravity="left|center_vertical"
-        android:paddingLeft="16dp"
+        android:paddingLeft="8dp"
         android:text="Palakkad, India"
-        android:textColor="@color/stone"
-        android:textSize="16sp" />
+        android:textColor="@color/liz"
+        android:textSize="14sp" />
 
 
 </RelativeLayout>

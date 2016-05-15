@@ -24,6 +24,7 @@ import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 import com.prappz.envi.R;
 import com.prappz.envi.application.PreferenceManager;
+import com.prappz.envi.utils.CircleTransformation;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -31,11 +32,11 @@ import com.squareup.picasso.Picasso;
  */
 public class IssueActivity extends AppCompatActivity {
 
-    TextView name, desc, map, close, ivLogo;
-    ImageView issue;
+    TextView name, desc, map, close, ivLogo, loc;
+    ImageView issue,userPic;
     Toolbar toolbar;
 
-    String s_name, s_desc, s_city, s_url, lat, lon, id;
+    String s_name, s_desc, s_city, s_url, lat, lon, id, usr_pic;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,11 +50,12 @@ public class IssueActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         issue = (ImageView) findViewById(R.id.issue);
-        name = (TextView) findViewById(R.id.issue_reporter_name);
+        name = (TextView) findViewById(R.id.issue_name);
+        loc = (TextView) findViewById(R.id.issue_place);
         desc = (TextView) findViewById(R.id.issue_desc);
         map = (TextView) findViewById(R.id.map);
         close = (TextView) findViewById(R.id.close);
-
+        userPic = (ImageView) findViewById(R.id.user_image);
         ivLogo.setText("Issue #" + getIntent().getStringExtra("id"));
 
 
@@ -66,6 +68,7 @@ public class IssueActivity extends AppCompatActivity {
         issue.putExtra("long", parseObject.getString("long"));*/
 
         s_name = getIntent().getStringExtra("name");
+        usr_pic = getIntent().getStringExtra("user_pic");
         s_desc = getIntent().getStringExtra("desc");
         s_url = getIntent().getStringExtra("url");
         s_city = getIntent().getStringExtra("city");
@@ -88,10 +91,16 @@ public class IssueActivity extends AppCompatActivity {
 
 
         });
-
-        name.setText("Reported by " + s_name + " from " + s_city);
+        loc.setText(s_city);
+        name.setText(s_name);
         desc.setText(s_desc);
         Picasso.with(this).load(s_url).into(issue);
+        Picasso.with(this)
+                .load(usr_pic)
+                .placeholder(android.R.color.darker_gray)
+                .transform(new CircleTransformation())
+                .error(android.R.color.darker_gray)
+                .into(userPic);
 
     }
 

@@ -40,16 +40,37 @@
           android:padding="16dp"
           android:src="@drawable/ic_place_black_24dp" />-->
 
-    <TextView
-        android:id="@+id/issue_reporter_name"
+    <RelativeLayout
+        android:id="@+id/action_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:gravity="left|center_vertical"
-        android:padding="16dp"
-        android:text="Reported by Nandu Mahesh"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:paddingBottom="@dimen/sixteen"
+        android:paddingLeft="@dimen/sixteen"
+        android:paddingTop="@dimen/sixteen">
+
+        <ImageView
+            android:id="@+id/user_image"
+            android:layout_width="@dimen/fourty"
+            android:layout_height="@dimen/fourty"
+            android:layout_marginRight="@dimen/sixteen" />
+
+        <TextView
+            android:id="@+id/issue_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/user_image"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/issue_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/issue_name"
+            android:layout_toRightOf="@+id/user_image"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#8c000000"
+            android:textSize="12sp" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/issue_desc"
@@ -60,8 +81,9 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:text="Reported by Nandu Mahesh"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/stone"
+        android:textSize="18sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -96,7 +118,7 @@
                 android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:text="VIEW ON MAP"
-                android:textColor="@color/indigo"
+                android:textColor="@color/title_text"
                 android:textSize="20sp" />-->
         </LinearLayout>
     </RelativeLayout>

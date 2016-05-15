@@ -10,7 +10,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
@@ -21,7 +20,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.RelativeLayout;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -29,7 +27,6 @@ import com.google.android.gms.location.LocationServices;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.prappz.envi.ClickedView;
 import com.prappz.envi.R;
 import com.prappz.envi.application.PreferenceManager;
 
@@ -48,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     ViewPager viewPager;
     @Bind(R.id.sliding_tabs)
     TabLayout mSlidingTabLayout;
-    private TabAdapter mAdapter;
     Toolbar toolbar;
+    private TabAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,14 +249,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        int count = getSupportFragmentManager().getBackStackEntryCount();
-        if (count == 1) {
-            finish();
-            getSupportFragmentManager().popBackStack();
-        }
-    }
+
+    
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

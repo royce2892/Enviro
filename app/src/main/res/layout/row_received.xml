@@ -26,7 +26,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:textColor="@color/liz"
+            android:textColor="@color/title_text"
             android:textSize="16sp" />
 
         <TextView
@@ -64,6 +64,7 @@
             android:paddingBottom="2dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:layout_marginLeft="@dimen/eight_dp"
             android:textColor="@android:color/white"
             android:textSize="16sp" />
 

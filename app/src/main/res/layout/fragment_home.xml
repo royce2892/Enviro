@@ -2,16 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffeeeeee">
+    >
 
     <ListView
         android:id="@+id/issue_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#EEE"
         android:divider="@null"
-        android:dividerHeight="1dp"
-        android:paddingBottom="60dp" />
+        android:background="#ffeeeeee"
+        android:paddingBottom="60dp"
+        android:dividerHeight="0dp" />
+
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

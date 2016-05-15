@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().startActivity(new Intent(getActivity(), NewIssueActivity.class));
-                getActivity().overridePendingTransition(R.anim.activity_push_up_in, R.anim.activity_push_up_out);
+                getActivity().overridePendingTransition(R.anim.activity_open_scale, R.anim.activity_close_scale);
             }
         });
 
@@ -99,6 +99,7 @@ public class HomeFragment extends Fragment {
         issue.putExtra("zip", parseObject.getString("zip"));
         issue.putExtra("lat", parseObject.getString("lat"));
         issue.putExtra("long", parseObject.getString("long"));
+        issue.putExtra("user_pic", parseObject.getString("pic"));
         issue.putExtra("id", parseObject.getObjectId());
         getActivity().startActivity(issue);
         getActivity().overridePendingTransition(R.anim.activity_push_up_in, R.anim.activity_push_up_out);

@@ -119,6 +119,7 @@ public class NewIssueActivity extends AppCompatActivity {
         });
 
         issue.put("name", PreferenceManager.getInstance(this).getString("name"));
+        issue.put("pic", PreferenceManager.getInstance(this).getString("url"));
         issue.put("lat", PreferenceManager.getInstance(this).getString("LAT"));
         issue.put("long", PreferenceManager.getInstance(this).getString("LON"));
         issue.put("city", PreferenceManager.getInstance(this).getString("CITY"));
