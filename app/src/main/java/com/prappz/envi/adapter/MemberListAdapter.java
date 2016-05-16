@@ -22,7 +22,6 @@ import java.util.List;
  */
 public class MemberListAdapter extends BaseAdapter {
 
-    private static final String TAG = "SLA";
     private Context context;
     private List<ParseUser> items;
     LayoutInflater mInflater;

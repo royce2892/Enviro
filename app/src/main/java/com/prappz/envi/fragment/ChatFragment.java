@@ -104,8 +104,11 @@ public class ChatFragment extends Fragment {
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {
-                        Toast.makeText(getActivity(), "Message sent", Toast.LENGTH_SHORT).show();
                         messageListAdapter.add(message);
+                        int n = ParseUser.getCurrentUser().getInt("score");
+                        ParseUser.getCurrentUser().put("score", n + 2);
+                        Toast.makeText(getActivity(), "Message sent and your new ENVIRO Score is " + String.valueOf(n + 2), Toast.LENGTH_SHORT).show();
+                        ParseUser.getCurrentUser().saveInBackground();
                         listView.setStackFromBottom(true);
                     } else
                         Toast.makeText(getActivity(), "Message sending failed due to reason " + e.getMessage(), Toast.LENGTH_SHORT).show();

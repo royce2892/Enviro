@@ -97,10 +97,10 @@ public class LoginActivity extends Activity {
 
     private void makeMeRequest() {
 
-        final ProgressDialog dialog = new ProgressDialog(this);
+        /*final ProgressDialog dialog = new ProgressDialog(this);
         dialog.setTitle("Loading");
         dialog.setMessage("Please wait while we log you in");
-        dialog.show();
+        dialog.show();*/
 
         GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(),
                 new GraphRequest.GraphJSONObjectCallback() {
@@ -195,7 +195,6 @@ public class LoginActivity extends Activity {
         user.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                Log.i(TAG, e + "");
                 if (e == null)
                     PreferenceManager.getInstance(LoginActivity.this).put(TrnqlAppConstants.HAS_SIGNED_UP, true);
                 skipToMain();

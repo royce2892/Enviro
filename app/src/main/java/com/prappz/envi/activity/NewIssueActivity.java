@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.prappz.envi.R;
 import com.prappz.envi.application.PreferenceManager;
@@ -131,7 +132,6 @@ public class NewIssueActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if (e == null) {
                     goBack();
-                    Log.i("IMAGE", "SAVED");
                 } else
                     Log.i("IMAGE", "ex" + e.getMessage());
             }
@@ -139,7 +139,10 @@ public class NewIssueActivity extends AppCompatActivity {
     }
 
     private void goBack() {
-        Toast.makeText(this, "Issue reported", Toast.LENGTH_LONG).show();
+        int n = ParseUser.getCurrentUser().getInt("score");
+        ParseUser.getCurrentUser().put("score", n + 50);
+        ParseUser.getCurrentUser().saveInBackground();
+        Toast.makeText(this, "Issue reported and your new ENVIRO score is " + String.valueOf(n + 50), Toast.LENGTH_LONG).show();
         onBackPressed();
     }
 

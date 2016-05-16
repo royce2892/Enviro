@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().startActivity(new Intent(getActivity(), NewIssueActivity.class));
-                getActivity().overridePendingTransition(R.anim.activity_open_scale, R.anim.activity_close_scale);
+                getActivity().overridePendingTransition(R.anim.activity_push_up_in, R.anim.activity_push_up_out);
             }
         });
 
@@ -64,6 +64,7 @@ public class HomeFragment extends Fragment {
 
     private void loadIssues() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Issue");
+        query.orderByDescending("createdAt");
         query.whereNotEqualTo("isClosed", true);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override

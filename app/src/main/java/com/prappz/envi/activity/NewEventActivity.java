@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.prappz.envi.R;
 import com.prappz.envi.application.PreferenceManager;
@@ -109,7 +110,10 @@ public class NewEventActivity extends AppCompatActivity {
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {
-                        Toast.makeText(NewEventActivity.this, "Event saved...", Toast.LENGTH_SHORT).show();
+                        int n = ParseUser.getCurrentUser().getInt("score");
+                        ParseUser.getCurrentUser().put("score", n + 20);
+                        Toast.makeText(NewEventActivity.this, "Event saved and your new ENVIRO Score is " + String.valueOf(n + 20), Toast.LENGTH_SHORT).show();
+                        ParseUser.getCurrentUser().saveInBackground();
                         NewEventActivity.this.onBackPressed();
                     } else {
                         Toast.makeText(NewEventActivity.this, "Event save failed due to reason " + e.getMessage(), Toast.LENGTH_SHORT).show();

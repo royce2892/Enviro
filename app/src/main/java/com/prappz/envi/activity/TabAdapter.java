@@ -62,10 +62,10 @@ public class TabAdapter extends FragmentPagerAdapter {
         String title = null;
         switch (position) {
             case 0:
-                title = "Recent";
+                title = "Issue";
                 break;
             case 1:
-                title = "Events";
+                title = "Event";
                 break;
             case 2:
                 title = "Chat";

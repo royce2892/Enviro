@@ -17,6 +17,7 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.prappz.envi.R;
 import com.prappz.envi.adapter.AttListAdapter;
@@ -99,7 +100,6 @@ public class EventActivity extends AppCompatActivity {
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {
-                        Toast.makeText(EventActivity.this, "Successfully send ATTEND RSVP", Toast.LENGTH_SHORT).show();
                         rsvp.setText("CANCEL RSVP");
                         isAttending = true;
                         handleAddName(true);
@@ -117,7 +117,7 @@ public class EventActivity extends AppCompatActivity {
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {
-                        Toast.makeText(EventActivity.this, "Successfully send CANCEL RSVP", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EventActivity.this, "Successfully sent CANCEL RSVP", Toast.LENGTH_SHORT).show();
                         rsvp.setText("ATTEND");
                         isAttending = false;
                         handleAddName(false);
@@ -138,6 +138,10 @@ public class EventActivity extends AppCompatActivity {
                 empty.setVisibility(View.GONE);
                 att.setVisibility(View.VISIBLE);
             }
+            int n = ParseUser.getCurrentUser().getInt("score");
+            ParseUser.getCurrentUser().put("score", n + 15);
+            ParseUser.getCurrentUser().saveInBackground();
+            Toast.makeText(EventActivity.this, "Successfully sent ATTEND RSVP and your ENVIRO index is " + String.valueOf(n + 15), Toast.LENGTH_SHORT).show();
             attListAdapter.add(name);
         } else {
             if (attendees.size() == 0 && empty.getVisibility() == View.GONE) {
