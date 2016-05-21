@@ -4,60 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!--<android.support.design.widget.TextInputLayout
-        android:id="@+id/phoneLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|center_horizontal"
-        android:layout_margin="16dp"
-        android:background="@drawable/border_add_comment"
-        android:paddingTop="3dp"
-        android:theme="@style/TextLabel"
-        android:visibility="gone">
-
-        <EditText
-            android:id="@+id/etPhone"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/transparent"
-            android:hint="Phone number"
-            android:inputType="number"
-            android:padding="@dimen/ten"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textColorHint="@color/colorPrimary"
-            android:textSize="14sp" />
-    </android.support.design.widget.TextInputLayout>-->
-
-<!--
-    <Button
-        android:visibility="gone"
-        android:id="@+id/join"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/via"
-        android:layout_margin="@dimen/twenty"
-        android:background="@color/emerald"
-        android:padding="@dimen/sixteen"
-        android:src="@drawable/flat_button"
-        android:text="join now"
-        android:textColor="@color/white"
-        android:textSize="24sp" />-->
-
     <LinearLayout
-        android:layout_marginTop="150dp"
         android:id="@+id/intro"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="148dp"
+            android:layout_height="148dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/app_logo" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
             android:gravity="center"
-            android:textSize="40dp"
+            android:text="@string/app_name"
             android:textColor="@color/liz"
-            />
+            android:textSize="40dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -65,19 +33,17 @@
             android:fontFamily="sans-serif-light"
             android:gravity="center"
             android:text="For a better environment"
-            android:textColor="@color/liz"
-            />
+            android:textColor="@color/liz" />
 
     </LinearLayout>
 
 
-
     <Button
+        android:id="@+id/fb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
-        android:id="@+id/fb"
 
         android:background="@drawable/com_facebook_button_background"
         android:drawableLeft="@drawable/com_facebook_button_icon"

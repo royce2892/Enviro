@@ -66,8 +66,7 @@
 
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -77,8 +76,7 @@
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:label="@string/app_name"/>
 
         <service android:name="com.parse.PushService" />
 

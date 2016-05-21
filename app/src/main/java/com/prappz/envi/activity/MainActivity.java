@@ -57,19 +57,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mAdapter = new TabAdapter(getSupportFragmentManager());
-//        viewPager.setOffscreenPageLimit(3);
+
         viewPager.setAdapter(mAdapter);
+        viewPager.setOffscreenPageLimit(3);
         mSlidingTabLayout.setupWithViewPager(viewPager);
-        // toolbar = (Toolbar) findViewById(R.id.toolBar);
-
-        /*fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        HomeFragment fragment = HomeFragment.newInstance();
-        fragmentTransaction.add(R.id.frame, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();*/
-
 
         requestPermission();
         if (mGoogleApiClient == null) {
